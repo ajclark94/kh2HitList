@@ -24,29 +24,23 @@ const luxord = document.getElementById('luxord');
 const roxas = document.getElementById('roxas');
 const lingering = document.getElementById('lingering');
 const active = document.querySelectorAll('.active')
-let quantity = 7
+const quantity = document.getElementById('quantity')
 let list = []
 let targets = []
 
 generate.addEventListener('click', () => {
-  getQuantity()
   reset(targets)
   compile(list)
   shuffle(list)
   choose(targets)
   console.log(targets)
   console.log(list)
-  console.log(quantity)
+  console.log(quantity.value)
 })
 
 clear.addEventListener('click', () => {
   location.reload()
 })
-
-function getQuantity() {
-  quantity = document.getElementById('quantity').value
-  return quantity
-}
 
 function compile(list) {
   if (yeet.checked) {
@@ -81,14 +75,14 @@ function shuffle(array) {
     //and swap it with the current element
     [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
   }
-  for (let i = 0; i < quantity; i++) {
+  for (let i = 0; i < quantity.value; i++) {
     targets[i] = list.shift()
   }
   return targets
 }
 
 function choose(targets) {
-  for (let i = 0; i < quantity; i++) {
+  for (let i = 0; i < quantity.value; i++) {
     switch(targets[i]) {
       case "pooh":
         pooh.classList.add('active');
@@ -144,7 +138,7 @@ function choose(targets) {
 
 function reset(targets) {
   if (targets == []) return
-  for (let i = 0; i < quantity; i++) {
+  for (let i = 0; i < quantity.value; i++) {
     switch(targets[i]) {
       case "pooh":
         pooh.classList.remove('active');
